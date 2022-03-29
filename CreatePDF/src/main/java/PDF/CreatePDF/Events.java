@@ -8,7 +8,9 @@ import java.util.Scanner;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.text.PDFTextStripper;
 
 public class Events {
 
@@ -28,14 +30,14 @@ public class Events {
 		contentStream.beginText();
 		contentStream.setFont(PDType1Font.TIMES_ROMAN, 12);
 		contentStream.setLeading(14.5f);
-		contentStream.newLineAtOffset(25, 700);
+		contentStream.newLineAtOffset(45, 700);
 
 		contentStream.showText("Order_Id  Pizza Name Quantity Price Amount");
 		contentStream.newLine();
 
 		for (Customer2 list : customer) {
-			contentStream.showText(list.getId() + " " + list.getName() + " " + list.getQuantity() + " "
-					+ list.getPrice() + "" + list.getQuantity());
+			contentStream.showText(list.getId() + "   " + list.getName() + "   " + list.getQuantity() + "   "
+					+ list.getPrice() + "    " + list.getTotal());
 			contentStream.newLine();
 		}
 
@@ -96,6 +98,18 @@ public class Events {
 		if (flag = false)
 			System.out.println(id2 + " Not found.");
 
+	}
+	
+	
+	public void reader() throws InvalidPasswordException, IOException {
+		File file = new File("/home/v2stech/git/Pizza_Managment_PDF/CreatePDF/src/main/resources/Hello.pdf");
+	      PDDocument document = PDDocument.load(file);
+	      PDFTextStripper pdfStripper = new PDFTextStripper();
+
+	      String text = pdfStripper.getText(document);
+	      System.out.println(text);
+
+	      document.close();
 	}
 
 }

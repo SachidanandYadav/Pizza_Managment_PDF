@@ -24,7 +24,7 @@ public class App
 		do {
 			System.out.println("========Pizza MANAGEMENT SYSTEM========");
 			System.out.println("1.Take Order\n" + "2.View Order\n" + "3.Delete Order\n"
-					+ "4.Search Order as per date \n"+ "0.Exit");
+					+ "4.Search Order as per date \n"+"5.View Order form PDF  \n"+ "0.Exit");
 			System.out.print("Enter your Choice : ");
 
 			Choice = sc.nextInt();
@@ -47,6 +47,9 @@ public class App
 				int id2 = sc.nextInt();
 				evet2.delete(id2,customer);
 				evet2.write(customer);
+				break;
+			case 5:
+				evet2.reader();
 				break;
 			case 0:// Exit
 				System.out.println("Thank You for with us");
